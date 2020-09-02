@@ -3,7 +3,7 @@ import time
 import telebot
 import
 
-bot = telebot.TeleBot('1231947190:AAEiN4wJvLV1raHgSyup39VA4fEib1GFZhU')
+bot = telebot.TeleBot('')
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard1.row('Расписание', 'Связь со старостой')
