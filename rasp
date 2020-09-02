@@ -1,0 +1,124 @@
+import time
+
+import telebot
+import
+
+bot = telebot.TeleBot('1231947190:AAEiN4wJvLV1raHgSyup39VA4fEib1GFZhU')
+
+keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard1.row('Расписание', 'Связь со старостой')
+
+keyboard2 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard2.row('Верхняя неделя', 'Нижняя неделя')
+
+keyboard3 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard3.row('Понедельник', 'Вторник')
+keyboard3.row('Среда', 'Четверг')
+keyboard3.row('Пятница')
+
+keyboard4 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard4.row('Спасибо ')
+
+keyboard5 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard5.row('-Понедельник', '-Вторник')
+keyboard5.row('-Среда', '-Четверг')
+keyboard5.row('-Пятница')
+
+keyboard6 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard6.row('Пиздюк ты, а не староста!')
+
+time.sleep(1)
+
+@bot.message_handler(commands=['start'])
+def start_message(message):
+    bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBSHhfTqG1jTG35B-ZEstp6gOht7io1gAC9wADUomRI6J6Ym0_4ftHGwQ', reply_markup=keyboard1)
+    bot.send_message(message.chat.id, 'Здравствуй, Друг мой! Выбирай в меню что тебе требуется.', reply_markup=keyboard1)
+@bot.message_handler(content_types=['text'])
+def send_text(message):
+    if message.text.lower() == 'расписание':
+        bot.send_message(message.chat.id, 'Выбери неделю', reply_markup=keyboard2)
+    elif message.text.lower() == 'связь со старостой':
+        bot.send_message(message.chat.id, 'Telegram: @kartopl')
+        bot.send_message(message.chat.id, 'Instagram: @antonsilkov')
+        bot.send_message(message.chat.id, 'VK: Антон Силков')
+        bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBSHNfToOg9G77MPcmYQo1m4gFyt4YdAACBQkAAtV-vwE5af8HTJeiNRsE', reply_markup=keyboard6)
+    elif message.text.lower() == 'пиздюк ты, а не староста!':
+        bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBSHFfToNGSLp-i6DMxoLGc9wcRvjkYwACCQkAAtV-vwG-Dk96euLKeRsE')
+        bot.send_message(message.chat.id, 'Как хорошо, что я могу посмотреть кто это нажал 😉 ', reply_markup=keyboard1)
+    elif message.text.lower() == 'верхняя неделя':
+        bot.send_message(message.chat.id, 'Выбери день недели', reply_markup=keyboard3)
+    elif message.text.lower() == 'понедельник':
+        bot.send_message(message.chat.id, '⬇ Верхняя неделя, Понедельник ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Физика - а.301/2', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Физическая культура', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Дискретная математика - а.435', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Теоретическая механика - а.417', reply_markup=keyboard4)
+    elif message.text.lower() == 'вторник':
+        bot.send_message(message.chat.id, '⬇ Верхняя неделя, Вторник ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Отсутствует', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Информационные технологии в машиностроении - а.347', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Основы научных исследований и инновационной деятельности - а.105', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Основы идеологии белорусского государства. Политология - а.311', reply_markup=keyboard4)
+    elif message.text.lower() == 'среда':
+        bot.send_message(message.chat.id, '⬇ Верхняя неделя, Среда ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Математика - а.457', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Механика материалов - а.508', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Теоретическая механика - а.509', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Теоретическая механика - а.417', reply_markup=keyboard4)
+    elif message.text.lower() == 'четверг':
+        bot.send_message(message.chat.id, '⬇ Верхняя неделя, Четверг ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Физика (1 подгруппа) - а.301/7, а.304/7', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Отсутствует (2 подгруппа)', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Физика (1 подгруппа) - а.301/7, а.304/7', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Отсутствует (2 подгруппа)', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Информационные технологии в машиностроении (1 подгруппа) - а.449', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Основы эколого-энергетической устойчивости производства (2 подгруппа) - а.248', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Дискретная математика - а.435', reply_markup=keyboard4)
+    elif message.text.lower() == 'пятница':
+        bot.send_message(message.chat.id, '⬇ Верхняя неделя, Пятница ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Математика - а.533', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Основы эколого-энергетической устойчивости производства - а.237', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Механика материалов - а.509', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Физическая культура', reply_markup=keyboard4)
+
+    elif message.text.lower() == 'нижняя неделя':
+        bot.send_message(message.chat.id, 'Выбери день недели', reply_markup=keyboard5)
+    elif message.text.lower() == '-понедельник':
+        bot.send_message(message.chat.id, '⬇ Нижняя неделя, Понедельник ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Физика - а.301/2', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Физическая культура', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Дискретная математика - а.435', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Теоретическая механика - а.417', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹5 пара (16:05-17:40) - Коррупция и её общественная опасность - а.411/4', reply_markup=keyboard4)
+    elif message.text.lower() == '-вторник':
+        bot.send_message(message.chat.id, '⬇ Нижняя неделя, Вторник ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Отсутствует', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Информационные технологии в машиностроении - а.347', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Основы научных исследований и инновационной деятельности - а.105', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Основы научных исследований и инновационной деятельности - а.140', reply_markup=keyboard4)
+    elif message.text.lower() == '-среда':
+        bot.send_message(message.chat.id, '⬇ Нижняя неделя, Среда ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Математика - а.457', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Механика материалов - а.508', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Теоретическая механика - а.509', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Механика материалов - а.09', reply_markup=keyboard4)
+    elif message.text.lower() == '-четверг':
+        bot.send_message(message.chat.id, '⬇ Нижняя неделя, Четверг ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Отсутствует (1 подгруппа)', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Физика (2 подгруппа) - а.301/7, а.304/7', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Отсутствует (1 подгруппа)', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Физика (2 подгруппа) - а.301/7, а.304/7', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Основы эколого-энергетической устойчивости производства (1 подгруппа) - а.449', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Информационные технологии в машиностроении(2 подгруппа) - а.248', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Основы идеологии белорусского государства. Политология - а.301', reply_markup=keyboard4)
+    elif message.text.lower() == '-пятница':
+        bot.send_message(message.chat.id, '⬇ Нижняя неделя, Пятница ⬇', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹1 пара (8:30-10:05) - Математика - а.533', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹2 пара (10:25-12:00) - Основы эколого-энергетической устойчивости производства - а.237', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹3 пара (12:30-14:05) - Физика - а.307/2', reply_markup=keyboard4)
+        bot.send_message(message.chat.id, '▹4 пара (14:20-15:55) - Физическая культура', reply_markup=keyboard4)
+
+    elif message.text.lower() == 'спасибо':
+        bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAEBSHpfTqjRjBGnEyuP4r8n2N7UdrVllgACiioAAulVBRgcqZWVyQ5Y_BsE', reply_markup=keyboard1)
+
+bot.polling()
